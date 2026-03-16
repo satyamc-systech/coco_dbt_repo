@@ -1,0 +1,77 @@
+version: 2
+
+sources:
+  - name: cortex_analyst_demo__insurance_raw
+    database: CORTEX_ANALYST_DEMO
+    schema: INSURANCE_RAW
+
+    tables:
+      - name: CUSTOMERS
+        columns:
+          - name: CUSTOMER_ID
+            data_type: NUMBER
+            description: "Unique identifier for the customer"
+          - name: CUSTOMER_NUMBER
+            data_type: TEXT
+            description: "Number assigned to the customer"
+          - name: FIRST_NAME
+            data_type: TEXT
+            description: "First name of the customer"
+          - name: LAST_NAME
+            data_type: TEXT
+            description: "Last name of the customer"
+          - name: DATE_OF_BIRTH
+            data_type: DATE
+            description: "Date of birth of the customer"
+          - name: EMAIL
+            data_type: TEXT
+            description: "Email address of the customer"
+          - name: PHONE
+            data_type: TEXT
+            description: "Phone number of the customer"
+          - name: ADDRESS_LINE1
+            data_type: TEXT
+            description: "Primary address line of the customer"
+          - name: ADDRESS_LINE2
+            data_type: TEXT
+            description: "Secondary address line of the customer"
+          - name: CITY
+            data_type: TEXT
+            description: "City of the customer"
+          - name: STATE
+            data_type: TEXT
+            description: "State of the customer"
+          - name: ZIP_CODE
+            data_type: TEXT
+            description: "Zip code of the customer"
+          - name: CUSTOMER_TYPE
+            data_type: TEXT
+            description: "Type of customer"
+          - name: CREDIT_SCORE
+            data_type: NUMBER
+            description: "Credit score of the customer"
+          - name: CREATED_AT
+            data_type: TIMESTAMP_NTZ
+            description: "Timestamp when the record was created"
+          - name: UPDATED_AT
+            data_type: TIMESTAMP_NTZ
+            description: "Timestamp when the record was last updated"
+        tests:
+          - dbt_expectations.expect_table_columns_to_match_set:
+              column_list:
+                - CUSTOMER_ID
+                - CUSTOMER_NUMBER
+                - FIRST_NAME
+                - LAST_NAME
+                - DATE_OF_BIRTH
+                - EMAIL
+                - PHONE
+                - ADDRESS_LINE1
+                - ADDRESS_LINE2
+                - CITY
+                - STATE
+                - ZIP_CODE
+                - CUSTOMER_TYPE
+                - CREDIT_SCORE
+                - CREATED_AT
+                - UPDATED_AT
