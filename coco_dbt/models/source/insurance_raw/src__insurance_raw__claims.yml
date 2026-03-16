@@ -1,0 +1,73 @@
+version: 2
+
+sources:
+  - name: cortex_analyst_demo__insurance_raw
+    database: CORTEX_ANALYST_DEMO
+    schema: INSURANCE_RAW
+
+    tables:
+      - name: CLAIMS
+        columns:
+          - name: CLAIM_ID
+            data_type: NUMBER
+            description: "Unique identifier for the claim"
+          - name: CLAIM_NUMBER
+            data_type: TEXT
+            description: "Claim number assigned to the claim"
+          - name: POLICY_ID
+            data_type: NUMBER
+            description: "Foreign key referencing the associated policy"
+          - name: CLAIM_STATUS
+            data_type: TEXT
+            description: "Current status of the claim"
+          - name: CLAIM_TYPE
+            data_type: TEXT
+            description: "Type of the claim"
+          - name: INCIDENT_DATE
+            data_type: DATE
+            description: "Date the incident occurred"
+          - name: REPORT_DATE
+            data_type: DATE
+            description: "Date the claim was reported"
+          - name: CLAIM_AMOUNT
+            data_type: NUMBER
+            description: "Total amount of the claim"
+          - name: APPROVED_AMOUNT
+            data_type: NUMBER
+            description: "Amount approved for the claim"
+          - name: DEDUCTIBLE_APPLIED
+            data_type: NUMBER
+            description: "Deductible amount applied to the claim"
+          - name: INCIDENT_DESCRIPTION
+            data_type: TEXT
+            description: "Description of the incident"
+          - name: ADJUSTER_NAME
+            data_type: TEXT
+            description: "Name of the claims adjuster"
+          - name: SETTLEMENT_DATE
+            data_type: DATE
+            description: "Date the claim was settled"
+          - name: CREATED_AT
+            data_type: TIMESTAMP_NTZ
+            description: "Timestamp when the record was created"
+          - name: UPDATED_AT
+            data_type: TIMESTAMP_NTZ
+            description: "Timestamp when the record was last updated"
+        tests:
+          - dbt_expectations.expect_table_columns_to_match_set:
+              column_list:
+                - CLAIM_ID
+                - CLAIM_NUMBER
+                - POLICY_ID
+                - CLAIM_STATUS
+                - CLAIM_TYPE
+                - INCIDENT_DATE
+                - REPORT_DATE
+                - CLAIM_AMOUNT
+                - APPROVED_AMOUNT
+                - DEDUCTIBLE_APPLIED
+                - INCIDENT_DESCRIPTION
+                - ADJUSTER_NAME
+                - SETTLEMENT_DATE
+                - CREATED_AT
+                - UPDATED_AT
