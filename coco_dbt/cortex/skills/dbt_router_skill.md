@@ -1,13 +1,15 @@
 ---
 name: dbt-router
-description: Route DBT related requests to the correct skill module.
+description: Route dbt-related requests to the correct task module based on user intent, automatically resolving upstream dependencies across source, staging, intermediate, mart, and publish layers.
 ---
 
 # DBT Pipeline Router
 
-This skill routes DBT requests to the correct development module.
+This skill routes dbt requests to the correct development module within the `coco_dbt` project.
 
 Always determine the user's task and load the appropriate module.
+
+Before performing any task, check if the user has given enough information to proceed. If not clear, always ask the user to provide input for the required fields.
 
 ## Task Routing Rules
 
@@ -80,3 +82,19 @@ tasks/generate_full_pipeline.md
 
 Load:
 tasks/generate_demo_data.md
+
+---
+
+## Post-Task Validation
+
+After completing any dbt task, load and run through: `standards/validation_checklist.md`
+
+---
+
+## Standards & Patterns
+
+For naming conventions, load: `standards/naming_conventions.md`
+For testing rules, load: `standards/testing_rules.md`
+For project structure, load: `standards/dbt_project_structure.md`
+For validation checklist, load: `standards/validation_checklist.md`
+For SQL/YML patterns, load files from: `patterns/`

@@ -3,14 +3,21 @@
     unique_key='id'
 ) }}
 
-SELECT *
-FROM source_table
+with src__source_table as (
+    select * from source_table
+    {% if is_incremental() %}
+    where updated_at > (
+        select max(updated_at) from {{ this }}
+    {% endif %}
+    )
+),
 
-{% if is_incremental() %}
-
-WHERE updated_at > (
-SELECT max(updated_at)
-FROM {{ this }}
+final_target_table as (
+    select
+        col1,
+        col2,
+        colN
+    from src__source_table
 )
 
-{% endif %}
+select * from final_target_table

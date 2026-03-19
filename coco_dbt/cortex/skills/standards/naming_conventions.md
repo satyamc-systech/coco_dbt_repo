@@ -131,3 +131,13 @@ mc__<macro_name>.sql
 Example
 
 mc__generate_schema_name.sql
+
+---
+
+# Final CTE Pattern
+
+Every dbt SQL model except staging (intermediate, mart, publish) must end with a final CTE that:
+
+1. Is named `final__<table_name>` (matching the model name without the layer prefix).
+2. Explicitly lists all output columns inside the CTE.
+3. Is followed by `select * from final__<table_name>` as the last statement.
