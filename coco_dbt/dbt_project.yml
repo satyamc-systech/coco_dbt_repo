@@ -18,7 +18,7 @@ models:
   coco_dbt:
     +database: CORTEX_ANALYST_DEMO
     +schema: DBT_SATYAM
-    stage:
+    staging:
       +materialized: view
     int:
       +materialized: ephemeral

@@ -1,0 +1,112 @@
+version: 2
+
+models:
+  - name: int__claims_enriched
+    description: "Intermediate model that enriches claims data with computed fields including net payout, denied amount, and processing duration metrics"
+
+    columns:
+      - name: claim_id
+        data_type: number
+        description: "Unique identifier for the claim"
+        data_tests:
+          - unique
+          - not_null
+
+      - name: claim_number
+        data_type: text
+        description: "Claim number assigned to the claim"
+        data_tests:
+          - not_null
+
+      - name: policy_id
+        data_type: number
+        description: "Foreign key referencing the associated policy"
+        data_tests:
+          - not_null
+
+      - name: claim_status
+        data_type: text
+        description: "Current status of the claim"
+
+      - name: claim_type
+        data_type: text
+        description: "Type of the claim"
+
+      - name: incident_date
+        data_type: date
+        description: "Date the incident occurred"
+
+      - name: report_date
+        data_type: date
+        description: "Date the claim was reported"
+
+      - name: settlement_date
+        data_type: date
+        description: "Date the claim was settled"
+
+      - name: claim_amount
+        data_type: number
+        description: "Total amount of the claim"
+
+      - name: approved_amount
+        data_type: number
+        description: "Amount approved for the claim"
+
+      - name: deductible_applied
+        data_type: number
+        description: "Deductible amount applied to the claim"
+
+      - name: net_payout_amount
+        data_type: number
+        description: "Net payout after deductible (approved_amount minus deductible_applied)"
+
+      - name: denied_amount
+        data_type: number
+        description: "Amount denied from the original claim (claim_amount minus approved_amount)"
+
+      - name: days_to_report
+        data_type: number
+        description: "Number of days between incident and report date"
+
+      - name: days_to_settle
+        data_type: number
+        description: "Number of days between report and settlement date"
+
+      - name: incident_description
+        data_type: text
+        description: "Description of the incident"
+
+      - name: adjuster_name
+        data_type: text
+        description: "Name of the claims adjuster"
+
+      - name: created_at
+        data_type: timestamp_ntz
+        description: "Timestamp when the record was created"
+
+      - name: updated_at
+        data_type: timestamp_ntz
+        description: "Timestamp when the record was last updated"
+
+    data_tests:
+      - dbt_expectations.expect_table_columns_to_match_set:
+          column_list:
+            - claim_id
+            - claim_number
+            - policy_id
+            - claim_status
+            - claim_type
+            - incident_date
+            - report_date
+            - settlement_date
+            - claim_amount
+            - approved_amount
+            - deductible_applied
+            - net_payout_amount
+            - denied_amount
+            - days_to_report
+            - days_to_settle
+            - incident_description
+            - adjuster_name
+            - created_at
+            - updated_at
