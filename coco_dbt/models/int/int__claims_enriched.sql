@@ -1,3 +1,7 @@
+{{ config(
+    materialized='table'
+) }}
+
 with stg_claims as (
 
     select

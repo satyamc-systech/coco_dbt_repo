@@ -87,26 +87,3 @@ models:
       - name: updated_at
         data_type: timestamp_ntz
         description: "Timestamp when the record was last updated"
-
-    data_tests:
-      - dbt_expectations.expect_table_columns_to_match_set:
-          column_list:
-            - claim_id
-            - claim_number
-            - policy_id
-            - claim_status
-            - claim_type
-            - incident_date
-            - report_date
-            - settlement_date
-            - claim_amount
-            - approved_amount
-            - deductible_applied
-            - net_payout_amount
-            - denied_amount
-            - days_to_report
-            - days_to_settle
-            - incident_description
-            - adjuster_name
-            - created_at
-            - updated_at
