@@ -1,4 +1,4 @@
-Create dbt source model:
+@(skill:dbt-router) Create dbt source model:
 
 Database:
 
