@@ -1,0 +1,139 @@
+version: 2
+
+models:
+  - name: fct__revenue_reconciled
+    description: >
+      Mart-level fact table for revenue reconciliation across billing, general ledger,
+      and payments systems. Each row represents a single policy with normalized USD amounts,
+      discrepancy flags, and a derived reconciliation status classification.
+
+    columns:
+      - name: policy_id
+        data_type: number
+        description: "Unique policy identifier - grain of the table"
+        data_tests:
+          - not_null
+          - unique
+
+      - name: policy_number
+        data_type: text
+        description: "Human-readable policy reference number"
+        data_tests:
+          - not_null
+
+      - name: product_line
+        data_type: text
+        description: "Insurance product line derived from policy type"
+        data_tests:
+          - not_null
+
+      - name: policy_status
+        data_type: text
+        description: "Current policy status"
+
+      - name: effective_date
+        data_type: date
+        description: "Policy effective date"
+
+      - name: state
+        data_type: text
+        description: "Customer state code"
+
+      - name: region
+        data_type: text
+        description: "US census region mapped from customer state"
+        data_tests:
+          - not_null
+
+      - name: original_currency
+        data_type: text
+        description: "Synthetic currency assigned to the policy"
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - USD
+                - EUR
+                - GBP
+                - CAD
+
+      - name: exchange_rate_to_usd
+        data_type: number
+        description: "Exchange rate used for USD normalization"
+        data_tests:
+          - not_null
+
+      - name: billing_amount_local
+        data_type: number
+        description: "Billing revenue in local currency"
+
+      - name: gl_amount_local
+        data_type: number
+        description: "General ledger revenue in local currency"
+
+      - name: payment_amount_local
+        data_type: number
+        description: "Payment revenue in local currency"
+
+      - name: billing_amount_usd
+        data_type: number
+        description: "Billing revenue normalized to USD"
+
+      - name: gl_amount_usd
+        data_type: number
+        description: "General ledger revenue normalized to USD"
+
+      - name: payment_amount_usd
+        data_type: number
+        description: "Payment revenue normalized to USD"
+
+      - name: claim_count
+        data_type: number
+        description: "Number of claims on the policy"
+
+      - name: payment_count
+        data_type: number
+        description: "Number of payments on the policy"
+
+      - name: billing_vs_gl_diff_usd
+        data_type: number
+        description: "Billing minus GL amount in USD"
+
+      - name: gl_vs_payment_diff_usd
+        data_type: number
+        description: "GL minus payment amount in USD"
+
+      - name: billing_vs_payment_diff_usd
+        data_type: number
+        description: "Billing minus payment amount in USD"
+
+      - name: has_billing_gl_discrepancy
+        data_type: boolean
+        description: "True when billing and GL do not match"
+
+      - name: has_gl_payment_discrepancy
+        data_type: boolean
+        description: "True when GL and payments do not match"
+
+      - name: has_billing_payment_discrepancy
+        data_type: boolean
+        description: "True when billing and payments do not match"
+
+      - name: has_any_discrepancy
+        data_type: boolean
+        description: "True when any system pair has a discrepancy"
+
+      - name: reconciliation_status
+        data_type: text
+        description: "Derived status: RECONCILED, MINOR_VARIANCE (all diffs <= $1), or UNRECONCILED"
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - RECONCILED
+                - MINOR_VARIANCE
+                - UNRECONCILED
+
+      - name: total_discrepancy_usd
+        data_type: number
+        description: "Sum of absolute discrepancies across all three system pairs in USD"

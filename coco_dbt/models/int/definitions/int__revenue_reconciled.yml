@@ -1,0 +1,142 @@
+version: 2
+
+models:
+  - name: int__revenue_reconciled
+    description: >
+      Policy-level revenue reconciliation across three systems: billing platform (POLICIES),
+      payments gateway (PAYMENTS), and general ledger (CLAIMS). Flags exact-match discrepancies,
+      normalizes synthetic currencies to USD, and classifies revenue by product line (POLICY_TYPE)
+      and region (customer STATE mapped to US census regions).
+
+    columns:
+      - name: policy_id
+        data_type: number
+        description: "Unique policy identifier - reconciliation grain"
+        data_tests:
+          - not_null
+          - unique
+
+      - name: policy_number
+        data_type: text
+        description: "Policy reference number"
+        data_tests:
+          - not_null
+
+      - name: product_line
+        data_type: text
+        description: "Product line derived from POLICY_TYPE"
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - AUTO_COMPREHENSIVE
+                - AUTO_LIABILITY
+                - BUSINESS_LIABILITY
+                - HEALTH_INDIVIDUAL
+                - HOME_OWNERS
+                - LIFE_TERM
+                - LIFE_WHOLE
+                - RENTERS
+
+      - name: policy_status
+        data_type: text
+        description: "Current status of the policy"
+
+      - name: effective_date
+        data_type: date
+        description: "Policy effective date"
+
+      - name: state
+        data_type: text
+        description: "Customer state code"
+
+      - name: region
+        data_type: text
+        description: "US census region derived from customer state"
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - Northeast
+                - Southeast
+                - Midwest
+                - West
+                - Unknown
+
+      - name: original_currency
+        data_type: text
+        description: "Synthetic currency assigned to the policy"
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - USD
+                - EUR
+                - GBP
+                - CAD
+
+      - name: exchange_rate_to_usd
+        data_type: number
+        description: "Exchange rate used for currency conversion to USD"
+        data_tests:
+          - not_null
+
+      - name: billing_amount_local
+        data_type: number
+        description: "Revenue from billing platform in local currency (PREMIUM_AMOUNT)"
+
+      - name: gl_amount_local
+        data_type: number
+        description: "Revenue from general ledger in local currency (sum of APPROVED_AMOUNT)"
+
+      - name: payment_amount_local
+        data_type: number
+        description: "Revenue from payments gateway in local currency (sum of PAYMENT_AMOUNT)"
+
+      - name: billing_amount_usd
+        data_type: number
+        description: "Billing revenue normalized to USD"
+
+      - name: gl_amount_usd
+        data_type: number
+        description: "GL revenue normalized to USD"
+
+      - name: payment_amount_usd
+        data_type: number
+        description: "Payment revenue normalized to USD"
+
+      - name: claim_count
+        data_type: number
+        description: "Number of claims associated with the policy"
+
+      - name: payment_count
+        data_type: number
+        description: "Number of payments associated with the policy"
+
+      - name: billing_vs_gl_diff_usd
+        data_type: number
+        description: "Difference between billing and GL amounts in USD"
+
+      - name: gl_vs_payment_diff_usd
+        data_type: number
+        description: "Difference between GL and payment amounts in USD"
+
+      - name: billing_vs_payment_diff_usd
+        data_type: number
+        description: "Difference between billing and payment amounts in USD"
+
+      - name: has_billing_gl_discrepancy
+        data_type: boolean
+        description: "True when billing and GL amounts do not match exactly"
+
+      - name: has_gl_payment_discrepancy
+        data_type: boolean
+        description: "True when GL and payment amounts do not match exactly"
+
+      - name: has_billing_payment_discrepancy
+        data_type: boolean
+        description: "True when billing and payment amounts do not match exactly"
+
+      - name: has_any_discrepancy
+        data_type: boolean
+        description: "True when any pair of systems has a discrepancy"

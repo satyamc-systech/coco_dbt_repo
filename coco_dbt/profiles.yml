@@ -6,7 +6,7 @@ coco_dbt:
       account: MCB71975
       user: SATYAMC
       role: CORTEX_USER_ROLE
-      database: CORTEX_ANALYST_DEMO
+      database: CORTEX_CODE_USECASE
       warehouse: CORTEX_ANALYST_WH
-      schema: DBT_SATYAM
+      schema: DBT_SCHAURAS
       threads: 4

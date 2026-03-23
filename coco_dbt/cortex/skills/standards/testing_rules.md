@@ -62,6 +62,9 @@ Source models should include:
 
 dbt_expectations.expect_table_columns_to_match_set
 
+IMPORTANT: This test must ONLY be placed in source YAML files (src__*.yml).
+Do NOT add expect_table_columns_to_match_set to staging, intermediate, mart, publish, or snapshot YAML files unless specified.
+
 ---
 
 # YAML Model Definition Rules

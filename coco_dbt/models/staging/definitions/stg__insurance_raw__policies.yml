@@ -1,0 +1,70 @@
+version: 2
+
+models:
+  - name: stg__insurance_raw__policies
+    description: "Staging model for the POLICIES table from INSURANCE_RAW schema"
+
+    columns:
+      - name: policy_id
+        data_type: number
+        description: "Unique identifier for the policy"
+        data_tests:
+          - not_null
+          - unique
+
+      - name: policy_number
+        data_type: text
+        description: "Policy reference number"
+        data_tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        data_type: number
+        description: "Foreign key referencing the customer"
+        data_tests:
+          - not_null
+
+      - name: agent_id
+        data_type: number
+        description: "Foreign key referencing the agent"
+
+      - name: policy_type
+        data_type: text
+        description: "Type of insurance policy (used as product line)"
+
+      - name: policy_status
+        data_type: text
+        description: "Current status of the policy"
+
+      - name: effective_date
+        data_type: date
+        description: "Date the policy becomes effective"
+
+      - name: expiration_date
+        data_type: date
+        description: "Date the policy expires"
+
+      - name: premium_amount
+        data_type: number
+        description: "Premium amount billed"
+
+      - name: deductible_amount
+        data_type: number
+        description: "Deductible amount on the policy"
+
+      - name: coverage_limit
+        data_type: number
+        description: "Maximum coverage limit"
+
+      - name: billing_frequency
+        data_type: text
+        description: "How often the policy is billed"
+
+      - name: created_at
+        data_type: timestamp_ntz
+        description: "Timestamp when the record was created"
+
+      - name: updated_at
+        data_type: timestamp_ntz
+        description: "Timestamp when the record was last updated"

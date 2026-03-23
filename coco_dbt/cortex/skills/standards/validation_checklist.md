@@ -32,7 +32,7 @@ After completing any dbt task, validate the output against the applicable layer 
 | Unique test present | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Not null test present | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Composite key handled using dbt_utils | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| Table column validation test present | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Table column validation test present | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | Snapshot strategy defined | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ |
 | Snapshot unique_key defined | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ |
 | Snapshot check_cols defined | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ |

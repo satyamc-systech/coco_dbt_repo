@@ -16,8 +16,6 @@ clean-targets:
 
 models:
   coco_dbt:
-    +database: CORTEX_ANALYST_DEMO
-    +schema: DBT_SATYAM
     staging:
       +materialized: view
     int:

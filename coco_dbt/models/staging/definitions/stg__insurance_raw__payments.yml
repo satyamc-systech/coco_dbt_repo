@@ -1,0 +1,70 @@
+version: 2
+
+models:
+  - name: stg__insurance_raw__payments
+    description: "Staging model for the PAYMENTS table from INSURANCE_RAW schema"
+
+    columns:
+      - name: payment_id
+        data_type: number
+        description: "Unique identifier for the payment"
+        data_tests:
+          - not_null
+          - unique
+
+      - name: payment_number
+        data_type: text
+        description: "Payment reference number"
+        data_tests:
+          - not_null
+          - unique
+
+      - name: claim_id
+        data_type: number
+        description: "Foreign key referencing the associated claim"
+        data_tests:
+          - not_null
+
+      - name: payment_type
+        data_type: text
+        description: "Type of payment"
+
+      - name: payment_status
+        data_type: text
+        description: "Current status of the payment"
+
+      - name: payment_method
+        data_type: text
+        description: "Method used for payment"
+
+      - name: payment_amount
+        data_type: number
+        description: "Amount of the payment"
+
+      - name: payment_date
+        data_type: date
+        description: "Date the payment was made"
+
+      - name: due_date
+        data_type: date
+        description: "Payment due date"
+
+      - name: check_number
+        data_type: text
+        description: "Check number if payment by check"
+
+      - name: payee_name
+        data_type: text
+        description: "Name of the payee"
+
+      - name: bank_account
+        data_type: text
+        description: "Masked bank account number"
+
+      - name: created_at
+        data_type: timestamp_ntz
+        description: "Timestamp when the record was created"
+
+      - name: updated_at
+        data_type: timestamp_ntz
+        description: "Timestamp when the record was last updated"
