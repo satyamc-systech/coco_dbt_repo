@@ -1,0 +1,84 @@
+version: 2
+
+models:
+  - name: int__txn_with_branch
+    description: "Joins raw_annuity_txn with firm_branch on PHYSICAL_BRANCH_ID=BRANCH_ID to enrich transactions with branch details"
+    columns:
+      - name: txn_id
+        description: "Unique transaction identifier"
+        data_type: TEXT
+      - name: policy_number
+        description: "Policy number"
+        data_type: TEXT
+      - name: product_type
+        description: "Annuity product type"
+        data_type: TEXT
+      - name: txn_type
+        description: "Transaction type"
+        data_type: TEXT
+      - name: txn_status
+        description: "Transaction status"
+        data_type: TEXT
+      - name: txn_date
+        description: "Transaction date"
+        data_type: DATE
+      - name: effective_date
+        description: "Effective date"
+        data_type: DATE
+      - name: premium_amount
+        description: "Premium amount"
+        data_type: NUMBER
+      - name: commission_amount
+        description: "Commission amount"
+        data_type: NUMBER
+      - name: physical_branch_id
+        description: "Physical branch ID"
+        data_type: TEXT
+      - name: master_firm_id
+        description: "Master firm ID"
+        data_type: TEXT
+      - name: owner_first_name
+        description: "Owner first name"
+        data_type: TEXT
+      - name: owner_last_name
+        description: "Owner last name"
+        data_type: TEXT
+      - name: owner_state
+        description: "Owner state"
+        data_type: TEXT
+      - name: annuitant_age
+        description: "Annuitant age"
+        data_type: NUMBER
+      - name: surrender_period_yrs
+        description: "Surrender period years"
+        data_type: NUMBER
+      - name: interest_rate
+        description: "Interest rate"
+        data_type: NUMBER
+      - name: branch_name
+        description: "Branch name"
+        data_type: TEXT
+      - name: branch_type
+        description: "Branch type"
+        data_type: TEXT
+      - name: branch_status
+        description: "Branch status"
+        data_type: TEXT
+      - name: branch_city
+        description: "Branch city"
+        data_type: TEXT
+      - name: branch_state
+        description: "Branch state"
+        data_type: TEXT
+      - name: branch_zip
+        description: "Branch ZIP"
+        data_type: TEXT
+      - name: branch_manager
+        description: "Branch manager"
+        data_type: TEXT
+      - name: created_at
+        description: "Created timestamp"
+        data_type: TIMESTAMP_NTZ
+      - name: updated_at
+        description: "Updated timestamp"
+        data_type: TIMESTAMP_NTZ

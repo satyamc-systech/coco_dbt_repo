@@ -1,0 +1,54 @@
+version: 2
+
+models:
+  - name: dim__firm
+    description: "Dimension table for insurance producer firms with branch counts"
+    columns:
+      - name: firm_sk
+        description: "Surrogate key for the firm"
+        data_type: TEXT
+        data_tests:
+          - unique
+          - not_null
+      - name: firm_dim_key
+        description: "Source firm dimension key"
+        data_type: NUMBER
+      - name: master_firm_id
+        description: "Master firm ID"
+        data_type: TEXT
+      - name: firm_name
+        description: "Firm name"
+        data_type: TEXT
+      - name: firm_type
+        description: "Firm type"
+        data_type: TEXT
+      - name: firm_status
+        description: "Firm status"
+        data_type: TEXT
+      - name: firm_npn
+        description: "Firm NPN"
+        data_type: TEXT
+      - name: firm_hq_state
+        description: "Firm HQ state"
+        data_type: TEXT
+      - name: firm_hq_city
+        description: "Firm HQ city"
+        data_type: TEXT
+      - name: firm_effective_date
+        description: "Firm effective date"
+        data_type: DATE
+      - name: firm_expiration_date
+        description: "Firm expiration date"
+        data_type: DATE
+      - name: total_branch_count
+        description: "Total number of branches"
+        data_type: NUMBER
+      - name: active_branch_count
+        description: "Number of active branches"
+        data_type: NUMBER
+      - name: dbt_created_at
+        description: "dbt record creation timestamp"
+        data_type: TIMESTAMP_NTZ
+      - name: dbt_updated_at
+        description: "dbt record update timestamp"
+        data_type: TIMESTAMP_NTZ

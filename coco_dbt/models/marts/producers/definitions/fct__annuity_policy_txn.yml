@@ -1,0 +1,93 @@
+version: 2
+
+models:
+  - name: fct__annuity_policy_txn
+    description: "Fact table for annuity policy transactions enriched with branch, firm, and producer data"
+    columns:
+      - name: txn_sk
+        description: "Surrogate key for the transaction"
+        data_type: TEXT
+        data_tests:
+          - unique
+          - not_null
+      - name: txn_id
+        description: "Source transaction ID"
+        data_type: TEXT
+      - name: policy_number
+        description: "Policy number"
+        data_type: TEXT
+      - name: product_type
+        description: "Annuity product type"
+        data_type: TEXT
+      - name: txn_type
+        description: "Transaction type"
+        data_type: TEXT
+      - name: txn_status
+        description: "Transaction status"
+        data_type: TEXT
+      - name: txn_date
+        description: "Transaction date"
+        data_type: DATE
+      - name: effective_date
+        description: "Effective date"
+        data_type: DATE
+      - name: premium_amount
+        description: "Premium amount"
+        data_type: NUMBER
+      - name: commission_amount
+        description: "Commission amount"
+        data_type: NUMBER
+      - name: commission_rate_pct
+        description: "Calculated commission rate percentage"
+        data_type: NUMBER
+      - name: physical_branch_id
+        description: "Physical branch ID"
+        data_type: TEXT
+      - name: master_firm_id
+        description: "Master firm ID"
+        data_type: TEXT
+      - name: owner_first_name
+        description: "Owner first name"
+        data_type: TEXT
+      - name: owner_last_name
+        description: "Owner last name"
+        data_type: TEXT
+      - name: owner_state
+        description: "Owner state"
+        data_type: TEXT
+      - name: annuitant_age
+        description: "Annuitant age"
+        data_type: NUMBER
+      - name: surrender_period_yrs
+        description: "Surrender period years"
+        data_type: NUMBER
+      - name: interest_rate
+        description: "Interest rate"
+        data_type: NUMBER
+      - name: branch_name
+        description: "Branch name"
+        data_type: TEXT
+      - name: branch_type
+        description: "Branch type"
+        data_type: TEXT
+      - name: branch_state
+        description: "Branch state"
+        data_type: TEXT
+      - name: firm_dim_key
+        description: "Firm dimension key"
+        data_type: NUMBER
+      - name: firm_name
+        description: "Firm name"
+        data_type: TEXT
+      - name: firm_type
+        description: "Firm type"
+        data_type: TEXT
+      - name: firm_status
+        description: "Firm status"
+        data_type: TEXT
+      - name: dbt_created_at
+        description: "dbt record creation timestamp"
+        data_type: TIMESTAMP_NTZ
+      - name: dbt_updated_at
+        description: "dbt record update timestamp"
+        data_type: TIMESTAMP_NTZ

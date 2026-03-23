@@ -1,0 +1,73 @@
+version: 2
+
+sources:
+  - name: cortex_analyst_demo__producers
+    database: CORTEX_ANALYST_DEMO
+    schema: PRODUCERS
+
+    tables:
+      - name: FIN_PROF
+        columns:
+          - name: FIN_PROF_DIM_KEY
+            data_type: NUMBER
+            description: "Surrogate key for the financial professional dimension"
+          - name: PRODUCER_NPN
+            data_type: TEXT
+            description: "National Producer Number"
+          - name: FIRST_NAME
+            data_type: TEXT
+            description: "First name of the producer"
+          - name: LAST_NAME
+            data_type: TEXT
+            description: "Last name of the producer"
+          - name: PRODUCER_TYPE
+            data_type: TEXT
+            description: "Type of producer (INDIVIDUAL)"
+          - name: LICENSE_STATE
+            data_type: TEXT
+            description: "State of licensure"
+          - name: LICENSE_STATUS
+            data_type: TEXT
+            description: "Status of the license (ACTIVE, INACTIVE, SUSPENDED)"
+          - name: LICENSE_NUMBER
+            data_type: TEXT
+            description: "License number"
+          - name: EMAIL
+            data_type: TEXT
+            description: "Email address"
+          - name: PHONE
+            data_type: TEXT
+            description: "Phone number"
+          - name: DESIGNATION
+            data_type: TEXT
+            description: "Professional designation (CLU, ChFC, CFP, RICP, LUTCF)"
+          - name: YEARS_EXPERIENCE
+            data_type: NUMBER
+            description: "Years of industry experience"
+          - name: ACTIVE_FLAG
+            data_type: BOOLEAN
+            description: "Whether the producer is currently active"
+          - name: CREATED_AT
+            data_type: TIMESTAMP_NTZ
+            description: "Record creation timestamp"
+          - name: UPDATED_AT
+            data_type: TIMESTAMP_NTZ
+            description: "Record last updated timestamp"
+        tests:
+          - dbt_expectations.expect_table_columns_to_match_set:
+              column_list:
+                - FIN_PROF_DIM_KEY
+                - PRODUCER_NPN
+                - FIRST_NAME
+                - LAST_NAME
+                - PRODUCER_TYPE
+                - LICENSE_STATE
+                - LICENSE_STATUS
+                - LICENSE_NUMBER
+                - EMAIL
+                - PHONE
+                - DESIGNATION
+                - YEARS_EXPERIENCE
+                - ACTIVE_FLAG
+                - CREATED_AT
+                - UPDATED_AT

@@ -1,0 +1,89 @@
+version: 2
+
+sources:
+  - name: cortex_analyst_demo__insurance_raw
+    database: CORTEX_ANALYST_DEMO
+    schema: INSURANCE_RAW
+
+    tables:
+      - name: RAW_ANNUITY_TXN
+        columns:
+          - name: TXN_ID
+            data_type: TEXT
+            description: "Unique identifier for the annuity transaction"
+          - name: POLICY_NUMBER
+            data_type: TEXT
+            description: "Policy number associated with the transaction"
+          - name: PRODUCT_TYPE
+            data_type: TEXT
+            description: "Type of annuity product (FIXED_ANNUITY, VARIABLE_ANNUITY, FIXED_INDEXED_ANNUITY)"
+          - name: TXN_TYPE
+            data_type: TEXT
+            description: "Transaction type (NEW_BUSINESS, ADDITIONAL_PREMIUM, SURRENDER)"
+          - name: TXN_STATUS
+            data_type: TEXT
+            description: "Status of the transaction (COMPLETED, PENDING)"
+          - name: TXN_DATE
+            data_type: DATE
+            description: "Date the transaction was initiated"
+          - name: EFFECTIVE_DATE
+            data_type: DATE
+            description: "Effective date of the transaction"
+          - name: PREMIUM_AMOUNT
+            data_type: NUMBER
+            description: "Premium amount of the transaction"
+          - name: COMMISSION_AMOUNT
+            data_type: NUMBER
+            description: "Commission amount earned"
+          - name: PHYSICAL_BRANCH_ID
+            data_type: TEXT
+            description: "Physical branch where the transaction originated"
+          - name: MASTER_FIRM_ID
+            data_type: TEXT
+            description: "Master firm associated with the transaction"
+          - name: OWNER_FIRST_NAME
+            data_type: TEXT
+            description: "First name of the annuity owner"
+          - name: OWNER_LAST_NAME
+            data_type: TEXT
+            description: "Last name of the annuity owner"
+          - name: OWNER_STATE
+            data_type: TEXT
+            description: "State of the annuity owner"
+          - name: ANNUITANT_AGE
+            data_type: NUMBER
+            description: "Age of the annuitant at time of transaction"
+          - name: SURRENDER_PERIOD_YRS
+            data_type: NUMBER
+            description: "Surrender period in years"
+          - name: INTEREST_RATE
+            data_type: NUMBER
+            description: "Guaranteed interest rate (0 for variable)"
+          - name: CREATED_AT
+            data_type: TIMESTAMP_NTZ
+            description: "Record creation timestamp"
+          - name: UPDATED_AT
+            data_type: TIMESTAMP_NTZ
+            description: "Record last updated timestamp"
+        tests:
+          - dbt_expectations.expect_table_columns_to_match_set:
+              column_list:
+                - TXN_ID
+                - POLICY_NUMBER
+                - PRODUCT_TYPE
+                - TXN_TYPE
+                - TXN_STATUS
+                - TXN_DATE
+                - EFFECTIVE_DATE
+                - PREMIUM_AMOUNT
+                - COMMISSION_AMOUNT
+                - PHYSICAL_BRANCH_ID
+                - MASTER_FIRM_ID
+                - OWNER_FIRST_NAME
+                - OWNER_LAST_NAME
+                - OWNER_STATE
+                - ANNUITANT_AGE
+                - SURRENDER_PERIOD_YRS
+                - INTEREST_RATE
+                - CREATED_AT
+                - UPDATED_AT

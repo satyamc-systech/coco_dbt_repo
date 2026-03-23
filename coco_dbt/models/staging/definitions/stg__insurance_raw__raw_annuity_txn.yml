@@ -1,0 +1,66 @@
+version: 2
+
+models:
+  - name: stg__insurance_raw__raw_annuity_txn
+    description: "Staging model for raw annuity transactions"
+    columns:
+      - name: txn_id
+        description: "Unique transaction identifier"
+        data_type: TEXT
+        data_tests:
+          - unique
+          - not_null
+      - name: policy_number
+        description: "Policy number"
+        data_type: TEXT
+      - name: product_type
+        description: "Annuity product type"
+        data_type: TEXT
+      - name: txn_type
+        description: "Transaction type"
+        data_type: TEXT
+      - name: txn_status
+        description: "Transaction status"
+        data_type: TEXT
+      - name: txn_date
+        description: "Transaction date"
+        data_type: DATE
+      - name: effective_date
+        description: "Effective date"
+        data_type: DATE
+      - name: premium_amount
+        description: "Premium amount"
+        data_type: NUMBER
+      - name: commission_amount
+        description: "Commission amount"
+        data_type: NUMBER
+      - name: physical_branch_id
+        description: "Physical branch identifier"
+        data_type: TEXT
+      - name: master_firm_id
+        description: "Master firm identifier"
+        data_type: TEXT
+      - name: owner_first_name
+        description: "Owner first name"
+        data_type: TEXT
+      - name: owner_last_name
+        description: "Owner last name"
+        data_type: TEXT
+      - name: owner_state
+        description: "Owner state"
+        data_type: TEXT
+      - name: annuitant_age
+        description: "Annuitant age"
+        data_type: NUMBER
+      - name: surrender_period_yrs
+        description: "Surrender period in years"
+        data_type: NUMBER
+      - name: interest_rate
+        description: "Interest rate"
+        data_type: NUMBER
+      - name: created_at
+        description: "Record creation timestamp"
+        data_type: TIMESTAMP_NTZ
+      - name: updated_at
+        description: "Record last updated timestamp"
+        data_type: TIMESTAMP_NTZ

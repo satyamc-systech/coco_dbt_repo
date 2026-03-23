@@ -1,0 +1,69 @@
+version: 2
+
+sources:
+  - name: cortex_analyst_demo__producers
+    database: CORTEX_ANALYST_DEMO
+    schema: PRODUCERS
+
+    tables:
+      - name: FIRM
+        columns:
+          - name: FIRM_DIM_KEY
+            data_type: NUMBER
+            description: "Surrogate key for the firm dimension"
+          - name: MASTER_FIRM_ID
+            data_type: TEXT
+            description: "Business key uniquely identifying the master firm"
+          - name: FIRM_NAME
+            data_type: TEXT
+            description: "Legal name of the firm"
+          - name: FIRM_TYPE
+            data_type: TEXT
+            description: "Type of firm (BROKER_DEALER, RIA, INSURANCE_AGENCY)"
+          - name: FIRM_STATUS
+            data_type: TEXT
+            description: "Current status of the firm (ACTIVE, INACTIVE, SUSPENDED)"
+          - name: FIRM_NPN
+            data_type: TEXT
+            description: "National Producer Number for the firm"
+          - name: FIRM_TAX_ID
+            data_type: TEXT
+            description: "Federal tax identification number"
+          - name: FIRM_STATE
+            data_type: TEXT
+            description: "State where the firm is headquartered"
+          - name: FIRM_CITY
+            data_type: TEXT
+            description: "City where the firm is headquartered"
+          - name: FIRM_ZIP
+            data_type: TEXT
+            description: "ZIP code of firm headquarters"
+          - name: EFFECTIVE_DATE
+            data_type: DATE
+            description: "Date the firm became effective"
+          - name: EXPIRATION_DATE
+            data_type: DATE
+            description: "Date the firm registration expires"
+          - name: CREATED_AT
+            data_type: TIMESTAMP_NTZ
+            description: "Record creation timestamp"
+          - name: UPDATED_AT
+            data_type: TIMESTAMP_NTZ
+            description: "Record last updated timestamp"
+        tests:
+          - dbt_expectations.expect_table_columns_to_match_set:
+              column_list:
+                - FIRM_DIM_KEY
+                - MASTER_FIRM_ID
+                - FIRM_NAME
+                - FIRM_TYPE
+                - FIRM_STATUS
+                - FIRM_NPN
+                - FIRM_TAX_ID
+                - FIRM_STATE
+                - FIRM_CITY
+                - FIRM_ZIP
+                - EFFECTIVE_DATE
+                - EXPIRATION_DATE
+                - CREATED_AT
+                - UPDATED_AT

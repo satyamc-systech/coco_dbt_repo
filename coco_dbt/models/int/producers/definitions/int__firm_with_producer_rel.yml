@@ -1,0 +1,57 @@
+version: 2
+
+models:
+  - name: int__firm_with_producer_rel
+    description: "Joins firm with fin_prof_to_firm_rel on FIRM_DIM_KEY to link firms with their producer relationships"
+    columns:
+      - name: relationship_id
+        description: "Relationship identifier"
+        data_type: NUMBER
+      - name: fin_prof_dim_key
+        description: "Financial professional dimension key"
+        data_type: NUMBER
+      - name: firm_dim_key
+        description: "Firm dimension key"
+        data_type: NUMBER
+      - name: master_firm_id
+        description: "Master firm ID"
+        data_type: TEXT
+      - name: firm_name
+        description: "Firm name"
+        data_type: TEXT
+      - name: firm_type
+        description: "Firm type"
+        data_type: TEXT
+      - name: firm_status
+        description: "Firm status"
+        data_type: TEXT
+      - name: firm_state
+        description: "Firm state"
+        data_type: TEXT
+      - name: firm_city
+        description: "Firm city"
+        data_type: TEXT
+      - name: relationship_type
+        description: "Relationship type"
+        data_type: TEXT
+      - name: relationship_status
+        description: "Relationship status"
+        data_type: TEXT
+      - name: relationship_start_date
+        description: "Relationship start date"
+        data_type: DATE
+      - name: relationship_end_date
+        description: "Relationship end date"
+        data_type: DATE
+      - name: commission_split_pct
+        description: "Commission split percentage"
+        data_type: NUMBER
+      - name: primary_flag
+        description: "Primary relationship flag"
+        data_type: BOOLEAN
+      - name: created_at
+        description: "Created timestamp"
+        data_type: TIMESTAMP_NTZ
+      - name: updated_at
+        description: "Updated timestamp"
+        data_type: TIMESTAMP_NTZ

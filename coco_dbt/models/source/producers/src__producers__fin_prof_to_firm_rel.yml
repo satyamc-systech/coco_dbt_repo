@@ -1,0 +1,57 @@
+version: 2
+
+sources:
+  - name: cortex_analyst_demo__producers
+    database: CORTEX_ANALYST_DEMO
+    schema: PRODUCERS
+
+    tables:
+      - name: FIN_PROF_TO_FIRM_REL
+        columns:
+          - name: RELATIONSHIP_ID
+            data_type: NUMBER
+            description: "Unique identifier for the relationship record"
+          - name: FIN_PROF_DIM_KEY
+            data_type: NUMBER
+            description: "Foreign key to the financial professional"
+          - name: FIRM_DIM_KEY
+            data_type: NUMBER
+            description: "Foreign key to the firm"
+          - name: RELATIONSHIP_TYPE
+            data_type: TEXT
+            description: "Type of relationship (REGISTERED_REP, IAR, APPOINTED_AGENT)"
+          - name: RELATIONSHIP_STATUS
+            data_type: TEXT
+            description: "Status of the relationship"
+          - name: START_DATE
+            data_type: DATE
+            description: "Start date of the relationship"
+          - name: END_DATE
+            data_type: DATE
+            description: "End date of the relationship"
+          - name: COMMISSION_SPLIT_PCT
+            data_type: NUMBER
+            description: "Commission split percentage for the producer"
+          - name: PRIMARY_FLAG
+            data_type: BOOLEAN
+            description: "Whether this is the primary firm relationship"
+          - name: CREATED_AT
+            data_type: TIMESTAMP_NTZ
+            description: "Record creation timestamp"
+          - name: UPDATED_AT
+            data_type: TIMESTAMP_NTZ
+            description: "Record last updated timestamp"
+        tests:
+          - dbt_expectations.expect_table_columns_to_match_set:
+              column_list:
+                - RELATIONSHIP_ID
+                - FIN_PROF_DIM_KEY
+                - FIRM_DIM_KEY
+                - RELATIONSHIP_TYPE
+                - RELATIONSHIP_STATUS
+                - START_DATE
+                - END_DATE
+                - COMMISSION_SPLIT_PCT
+                - PRIMARY_FLAG
+                - CREATED_AT
+                - UPDATED_AT

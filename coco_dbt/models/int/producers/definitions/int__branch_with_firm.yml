@@ -1,0 +1,75 @@
+version: 2
+
+models:
+  - name: int__branch_with_firm
+    description: "Joins firm_branch with firm on MASTER_FIRM_ID to enrich branches with firm details"
+    columns:
+      - name: branch_id
+        description: "Branch identifier"
+        data_type: TEXT
+      - name: master_firm_id
+        description: "Master firm ID"
+        data_type: TEXT
+      - name: branch_name
+        description: "Branch name"
+        data_type: TEXT
+      - name: branch_type
+        description: "Branch type"
+        data_type: TEXT
+      - name: branch_status
+        description: "Branch status"
+        data_type: TEXT
+      - name: branch_address
+        description: "Branch address"
+        data_type: TEXT
+      - name: branch_city
+        description: "Branch city"
+        data_type: TEXT
+      - name: branch_state
+        description: "Branch state"
+        data_type: TEXT
+      - name: branch_zip
+        description: "Branch ZIP"
+        data_type: TEXT
+      - name: branch_phone
+        description: "Branch phone"
+        data_type: TEXT
+      - name: branch_manager
+        description: "Branch manager"
+        data_type: TEXT
+      - name: firm_dim_key
+        description: "Firm dimension key"
+        data_type: NUMBER
+      - name: firm_name
+        description: "Firm name"
+        data_type: TEXT
+      - name: firm_type
+        description: "Firm type"
+        data_type: TEXT
+      - name: firm_status
+        description: "Firm status"
+        data_type: TEXT
+      - name: firm_npn
+        description: "Firm NPN"
+        data_type: TEXT
+      - name: firm_hq_state
+        description: "Firm HQ state"
+        data_type: TEXT
+      - name: firm_hq_city
+        description: "Firm HQ city"
+        data_type: TEXT
+      - name: branch_effective_date
+        description: "Branch effective date"
+        data_type: DATE
+      - name: firm_effective_date
+        description: "Firm effective date"
+        data_type: DATE
+      - name: firm_expiration_date
+        description: "Firm expiration date"
+        data_type: DATE
+      - name: created_at
+        description: "Created timestamp"
+        data_type: TIMESTAMP_NTZ
+      - name: updated_at
+        description: "Updated timestamp"
+        data_type: TIMESTAMP_NTZ

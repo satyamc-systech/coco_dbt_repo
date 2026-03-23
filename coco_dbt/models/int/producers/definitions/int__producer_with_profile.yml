@@ -1,0 +1,75 @@
+version: 2
+
+models:
+  - name: int__producer_with_profile
+    description: "Joins fin_prof_to_firm_rel with fin_prof on FIN_PROF_DIM_KEY to create a full producer profile with firm relationship"
+    columns:
+      - name: relationship_id
+        description: "Relationship identifier"
+        data_type: NUMBER
+      - name: fin_prof_dim_key
+        description: "Financial professional dimension key"
+        data_type: NUMBER
+      - name: firm_dim_key
+        description: "Firm dimension key"
+        data_type: NUMBER
+      - name: relationship_type
+        description: "Relationship type"
+        data_type: TEXT
+      - name: relationship_status
+        description: "Relationship status"
+        data_type: TEXT
+      - name: relationship_start_date
+        description: "Relationship start date"
+        data_type: DATE
+      - name: relationship_end_date
+        description: "Relationship end date"
+        data_type: DATE
+      - name: commission_split_pct
+        description: "Commission split percentage"
+        data_type: NUMBER
+      - name: primary_flag
+        description: "Primary relationship flag"
+        data_type: BOOLEAN
+      - name: producer_npn
+        description: "Producer NPN"
+        data_type: TEXT
+      - name: first_name
+        description: "First name"
+        data_type: TEXT
+      - name: last_name
+        description: "Last name"
+        data_type: TEXT
+      - name: producer_type
+        description: "Producer type"
+        data_type: TEXT
+      - name: license_state
+        description: "License state"
+        data_type: TEXT
+      - name: license_status
+        description: "License status"
+        data_type: TEXT
+      - name: license_number
+        description: "License number"
+        data_type: TEXT
+      - name: email
+        description: "Email"
+        data_type: TEXT
+      - name: phone
+        description: "Phone"
+        data_type: TEXT
+      - name: designation
+        description: "Professional designation"
+        data_type: TEXT
+      - name: years_experience
+        description: "Years of experience"
+        data_type: NUMBER
+      - name: active_flag
+        description: "Active flag"
+        data_type: BOOLEAN
+      - name: created_at
+        description: "Created timestamp"
+        data_type: TIMESTAMP_NTZ
+      - name: updated_at
+        description: "Updated timestamp"
+        data_type: TIMESTAMP_NTZ

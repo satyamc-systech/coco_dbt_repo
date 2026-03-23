@@ -1,0 +1,51 @@
+version: 2
+
+models:
+  - name: stg__producers__firm
+    description: "Staging model for insurance producer firms"
+    columns:
+      - name: firm_dim_key
+        description: "Firm dimension surrogate key"
+        data_type: NUMBER
+        data_tests:
+          - unique
+          - not_null
+      - name: master_firm_id
+        description: "Business key for the firm"
+        data_type: TEXT
+      - name: firm_name
+        description: "Legal name of the firm"
+        data_type: TEXT
+      - name: firm_type
+        description: "Firm type"
+        data_type: TEXT
+      - name: firm_status
+        description: "Firm status"
+        data_type: TEXT
+      - name: firm_npn
+        description: "Firm NPN"
+        data_type: TEXT
+      - name: firm_tax_id
+        description: "Firm tax ID"
+        data_type: TEXT
+      - name: firm_state
+        description: "Firm state"
+        data_type: TEXT
+      - name: firm_city
+        description: "Firm city"
+        data_type: TEXT
+      - name: firm_zip
+        description: "Firm ZIP"
+        data_type: TEXT
+      - name: effective_date
+        description: "Effective date"
+        data_type: DATE
+      - name: expiration_date
+        description: "Expiration date"
+        data_type: DATE
+      - name: created_at
+        description: "Created timestamp"
+        data_type: TIMESTAMP_NTZ
+      - name: updated_at
+        description: "Updated timestamp"
+        data_type: TIMESTAMP_NTZ
