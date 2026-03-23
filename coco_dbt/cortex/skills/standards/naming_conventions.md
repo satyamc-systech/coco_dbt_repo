@@ -141,3 +141,5 @@ Every dbt SQL model except staging (intermediate, mart, publish) must end with a
 1. Is named `final__<table_name>` (matching the model name without the layer prefix).
 2. Explicitly lists all output columns inside the CTE.
 3. Is followed by `select * from final__<table_name>` as the last statement.
+
+All source/reference declaration CTEs (non-final CTEs) must use `select *` instead of listing individual columns. Only the final CTE should explicitly list columns.

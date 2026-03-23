@@ -7,7 +7,8 @@ Staging models read data from source models and prepare them for transformation 
 Rules:
 
 - minimal or no transformations
-- explicit column listing
+- since staging models have only one CTE, explicitly list all columns inside that CTE
+- the final select outside the CTE must be `select * from <last_cte>`
 - no joins
 - no aggregations
 

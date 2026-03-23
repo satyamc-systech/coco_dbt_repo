@@ -26,9 +26,26 @@ view
 
 ## SQL Pattern
 
-SELECT
-    *
-FROM {{ source('<database>__<schema>', '<table>') }}
+Refer to: `patterns/staging_sql_pattern.md`
+
+Since staging models have only one CTE, explicitly list all columns inside that CTE.
+The final select must be `select * from <last_cte>`.
+
+Example:
+
+```sql
+with source_data as (
+
+    select
+        column_1,
+        column_2,
+        column_3
+    from {{ source('<database>__<schema>', '<table>') }}
+
+)
+
+select * from source_data
+```
 
 ---
 

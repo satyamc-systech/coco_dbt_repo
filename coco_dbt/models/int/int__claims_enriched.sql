@@ -5,21 +5,7 @@
 with stg_claims as (
 
     select
-        claim_id,
-        claim_number,
-        policy_id,
-        claim_status,
-        claim_type,
-        incident_date,
-        report_date,
-        claim_amount,
-        approved_amount,
-        deductible_applied,
-        incident_description,
-        adjuster_name,
-        settlement_date,
-        created_at,
-        updated_at
+        *
     from {{ ref('stg__insurance_raw__claims') }}
 
 ),
