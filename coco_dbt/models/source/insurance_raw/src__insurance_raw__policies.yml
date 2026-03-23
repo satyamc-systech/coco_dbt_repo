@@ -1,0 +1,69 @@
+version: 2
+
+sources:
+  - name: cortex_analyst_demo__insurance_raw
+    database: CORTEX_ANALYST_DEMO
+    schema: INSURANCE_RAW
+
+    tables:
+      - name: POLICIES
+        columns:
+          - name: POLICY_ID
+            data_type: NUMBER
+            description: "Unique identifier for the policy"
+          - name: POLICY_NUMBER
+            data_type: TEXT
+            description: "Policy reference number"
+          - name: CUSTOMER_ID
+            data_type: NUMBER
+            description: "Foreign key referencing the customer"
+          - name: AGENT_ID
+            data_type: NUMBER
+            description: "Foreign key referencing the agent"
+          - name: POLICY_TYPE
+            data_type: TEXT
+            description: "Type of insurance policy"
+          - name: POLICY_STATUS
+            data_type: TEXT
+            description: "Current status of the policy"
+          - name: EFFECTIVE_DATE
+            data_type: DATE
+            description: "Date the policy becomes effective"
+          - name: EXPIRATION_DATE
+            data_type: DATE
+            description: "Date the policy expires"
+          - name: PREMIUM_AMOUNT
+            data_type: NUMBER
+            description: "Premium amount billed"
+          - name: DEDUCTIBLE_AMOUNT
+            data_type: NUMBER
+            description: "Deductible amount on the policy"
+          - name: COVERAGE_LIMIT
+            data_type: NUMBER
+            description: "Maximum coverage limit"
+          - name: BILLING_FREQUENCY
+            data_type: TEXT
+            description: "How often the policy is billed"
+          - name: CREATED_AT
+            data_type: TIMESTAMP_NTZ
+            description: "Timestamp when the record was created"
+          - name: UPDATED_AT
+            data_type: TIMESTAMP_NTZ
+            description: "Timestamp when the record was last updated"
+        tests:
+          - dbt_expectations.expect_table_columns_to_match_set:
+              column_list:
+                - POLICY_ID
+                - POLICY_NUMBER
+                - CUSTOMER_ID
+                - AGENT_ID
+                - POLICY_TYPE
+                - POLICY_STATUS
+                - EFFECTIVE_DATE
+                - EXPIRATION_DATE
+                - PREMIUM_AMOUNT
+                - DEDUCTIBLE_AMOUNT
+                - COVERAGE_LIMIT
+                - BILLING_FREQUENCY
+                - CREATED_AT
+                - UPDATED_AT
