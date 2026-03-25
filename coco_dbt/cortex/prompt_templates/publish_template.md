@@ -1,61 +1,74 @@
 # Publish Model Prompt Template
 
-Use this template to generate publish layer models.
-
-Publish models expose curated datasets for downstream consumers such as BI tools or analytics teams.
+Use this template to create publish layer models that expose curated datasets for downstream consumers such as BI tools or analytics teams.
+Copy, paste, and modify the values below to match your requirements.
 
 ---
 
 ## Template
 
-Create a publish model.
+@(skill:dbt-router) Create a publish model.
 
-Pipeline Folder:
+Pipeline Folder: insurance_pipeline
 
-Publish Folder Name:
+Publish Folder Name: reporting
 
-Model Name:
+Model Name: pub__claims_overview
 
 Input Mart Models:
+- fct__claims_summary
+- dim__customer
+- dim__policy
 
 Columns Required:
+- claim_id
+- claim_number
+- customer_name
+- policy_number
+- claim_type
+- claim_status
+- claim_amount
+- approved_amount
+- net_payout_amount
+- days_to_settle
+- region
 
-Filters if any:
+Filters: claim_status IN ('APPROVED', 'SETTLED')
 
-Business Description:
+Business Description: Dataset used by BI dashboards to track approved and settled insurance claims with customer and policy context.
 
 Materialization: view
 
 ---
 
-## Example Prompt
+## Additional Example
 
-Create a publish model.
+### Revenue reconciliation report
 
-Pipeline Folder: policy_pipeline  
-Publish Folder Name: reporting  
-Model Name: customer_policy_summary
+@(skill:dbt-router) Create a publish model.
+
+Pipeline Folder: finance_pipeline
+
+Publish Folder Name: reporting
+
+Model Name: pub__revenue_reconciliation
 
 Input Mart Models:
-
-fct__policy_transactions  
-dim__customer  
+- fct__revenue_reconciled
 
 Columns Required:
+- policy_id
+- policy_number
+- product_line
+- region
+- billing_amount_usd
+- gl_amount_usd
+- payment_amount_usd
+- reconciliation_status
+- total_discrepancy_usd
 
-customer_id  
-customer_name  
-policy_id  
-policy_start_date  
-policy_end_date  
-policy_status  
+Filters: has_any_discrepancy = TRUE
 
-Filters:
-
-policy_status = 'ACTIVE'
-
-Business Description:
-
-Dataset used by BI dashboards to track active customer policies.
+Business Description: Dataset exposing policies with revenue discrepancies for finance team review.
 
 Materialization: view
