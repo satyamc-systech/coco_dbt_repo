@@ -2,56 +2,100 @@ version: 2
 
 models:
   - name: int__firm_with_producer_rel
-    description: "Joins firm with fin_prof_to_firm_rel on FIRM_DIM_KEY to link firms with their producer relationships"
+    description: "Intermediate model joining FIRM with FIN_PROF_TO_FIRM_REL on FIRM_DIM_KEY to enrich firm data with producer relationship details"
+
     columns:
-      - name: relationship_id
-        description: "Relationship identifier"
-        data_type: NUMBER
-      - name: fin_prof_dim_key
-        description: "Financial professional dimension key"
-        data_type: NUMBER
       - name: firm_dim_key
+        data_type: number
         description: "Firm dimension key"
-        data_type: NUMBER
+        data_tests:
+          - not_null
+
       - name: master_firm_id
-        description: "Master firm ID"
-        data_type: TEXT
+        data_type: text
+        description: "Master firm identifier"
+        data_tests:
+          - not_null
+
       - name: firm_name
-        description: "Firm name"
-        data_type: TEXT
+        data_type: text
+        description: "Name of the firm"
+
       - name: firm_type
-        description: "Firm type"
-        data_type: TEXT
+        data_type: text
+        description: "Type of firm"
+
       - name: firm_status
-        description: "Firm status"
-        data_type: TEXT
+        data_type: text
+        description: "Current firm status"
+
+      - name: firm_npn
+        data_type: text
+        description: "Firm National Producer Number"
+
+      - name: firm_tax_id
+        data_type: text
+        description: "Firm tax identification number"
+
       - name: firm_state
-        description: "Firm state"
-        data_type: TEXT
+        data_type: text
+        description: "State where the firm is located"
+
       - name: firm_city
-        description: "Firm city"
-        data_type: TEXT
+        data_type: text
+        description: "City where the firm is located"
+
+      - name: firm_zip
+        data_type: text
+        description: "Firm zip code"
+
+      - name: effective_date
+        data_type: date
+        description: "Firm effective date"
+
+      - name: expiration_date
+        data_type: date
+        description: "Firm expiration date"
+
+      - name: relationship_id
+        data_type: number
+        description: "Unique identifier for the producer-firm relationship"
+        data_tests:
+          - not_null
+          - unique
+
+      - name: fin_prof_dim_key
+        data_type: number
+        description: "Foreign key to FIN_PROF dimension"
+
       - name: relationship_type
-        description: "Relationship type"
-        data_type: TEXT
+        data_type: text
+        description: "Type of relationship between producer and firm"
+
       - name: relationship_status
-        description: "Relationship status"
-        data_type: TEXT
+        data_type: text
+        description: "Current status of the relationship"
+
       - name: relationship_start_date
+        data_type: date
         description: "Relationship start date"
-        data_type: DATE
+
       - name: relationship_end_date
+        data_type: date
         description: "Relationship end date"
-        data_type: DATE
+
       - name: commission_split_pct
+        data_type: number
         description: "Commission split percentage"
-        data_type: NUMBER
+
       - name: primary_flag
-        description: "Primary relationship flag"
-        data_type: BOOLEAN
+        data_type: boolean
+        description: "Whether this is the primary firm relationship"
+
       - name: created_at
-        description: "Created timestamp"
-        data_type: TIMESTAMP_NTZ
+        data_type: timestamp_ntz
+        description: "Record creation timestamp"
+
       - name: updated_at
-        description: "Updated timestamp"
-        data_type: TIMESTAMP_NTZ
+        data_type: timestamp_ntz
+        description: "Record last updated timestamp"

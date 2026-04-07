@@ -10,40 +10,40 @@ sources:
         columns:
           - name: FIN_PROF_DIM_KEY
             data_type: NUMBER
-            description: "Surrogate key for the financial professional dimension"
+            description: "Unique dimension key for the financial professional"
           - name: PRODUCER_NPN
             data_type: TEXT
             description: "National Producer Number"
           - name: FIRST_NAME
             data_type: TEXT
-            description: "First name of the producer"
+            description: "Producer first name"
           - name: LAST_NAME
             data_type: TEXT
-            description: "Last name of the producer"
+            description: "Producer last name"
           - name: PRODUCER_TYPE
             data_type: TEXT
-            description: "Type of producer (INDIVIDUAL)"
+            description: "Type of producer"
           - name: LICENSE_STATE
             data_type: TEXT
-            description: "State of licensure"
+            description: "State where the producer is licensed"
           - name: LICENSE_STATUS
             data_type: TEXT
-            description: "Status of the license (ACTIVE, INACTIVE, SUSPENDED)"
+            description: "Current license status"
           - name: LICENSE_NUMBER
             data_type: TEXT
             description: "License number"
           - name: EMAIL
             data_type: TEXT
-            description: "Email address"
+            description: "Producer email address"
           - name: PHONE
             data_type: TEXT
-            description: "Phone number"
+            description: "Producer phone number"
           - name: DESIGNATION
             data_type: TEXT
-            description: "Professional designation (CLU, ChFC, CFP, RICP, LUTCF)"
+            description: "Professional designation"
           - name: YEARS_EXPERIENCE
             data_type: NUMBER
-            description: "Years of industry experience"
+            description: "Years of experience"
           - name: ACTIVE_FLAG
             data_type: BOOLEAN
             description: "Whether the producer is currently active"

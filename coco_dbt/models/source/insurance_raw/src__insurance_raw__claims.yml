@@ -13,28 +13,28 @@ sources:
             description: "Unique identifier for the claim"
           - name: CLAIM_NUMBER
             data_type: TEXT
-            description: "Claim number assigned to the claim"
+            description: "Claim reference number"
           - name: POLICY_ID
             data_type: NUMBER
-            description: "Foreign key referencing the associated policy"
+            description: "Foreign key referencing the policy"
           - name: CLAIM_STATUS
             data_type: TEXT
             description: "Current status of the claim"
           - name: CLAIM_TYPE
             data_type: TEXT
-            description: "Type of the claim"
+            description: "Type of claim filed"
           - name: INCIDENT_DATE
             data_type: DATE
-            description: "Date the incident occurred"
+            description: "Date of the incident"
           - name: REPORT_DATE
             data_type: DATE
             description: "Date the claim was reported"
           - name: CLAIM_AMOUNT
             data_type: NUMBER
-            description: "Total amount of the claim"
+            description: "Total claimed amount"
           - name: APPROVED_AMOUNT
             data_type: NUMBER
-            description: "Amount approved for the claim"
+            description: "Approved payout amount"
           - name: DEDUCTIBLE_APPLIED
             data_type: NUMBER
             description: "Deductible amount applied to the claim"

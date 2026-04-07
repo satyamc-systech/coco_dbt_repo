@@ -2,74 +2,108 @@ version: 2
 
 models:
   - name: int__producer_with_profile
-    description: "Joins fin_prof_to_firm_rel with fin_prof on FIN_PROF_DIM_KEY to create a full producer profile with firm relationship"
+    description: "Intermediate model joining FIN_PROF_TO_FIRM_REL with FIN_PROF on FIN_PROF_DIM_KEY to create a full producer profile with firm relationship context"
+
     columns:
       - name: relationship_id
-        description: "Relationship identifier"
-        data_type: NUMBER
+        data_type: number
+        description: "Unique identifier for the producer-firm relationship"
+        data_tests:
+          - not_null
+          - unique
+
       - name: fin_prof_dim_key
-        description: "Financial professional dimension key"
-        data_type: NUMBER
+        data_type: number
+        description: "Foreign key to FIN_PROF dimension"
+        data_tests:
+          - not_null
+
       - name: firm_dim_key
-        description: "Firm dimension key"
-        data_type: NUMBER
+        data_type: number
+        description: "Foreign key to FIRM dimension"
+        data_tests:
+          - not_null
+
       - name: relationship_type
-        description: "Relationship type"
-        data_type: TEXT
+        data_type: text
+        description: "Type of relationship between producer and firm"
+
       - name: relationship_status
-        description: "Relationship status"
-        data_type: TEXT
-      - name: relationship_start_date
+        data_type: text
+        description: "Current status of the relationship"
+
+      - name: start_date
+        data_type: date
         description: "Relationship start date"
-        data_type: DATE
-      - name: relationship_end_date
+
+      - name: end_date
+        data_type: date
         description: "Relationship end date"
-        data_type: DATE
+
       - name: commission_split_pct
+        data_type: number
         description: "Commission split percentage"
-        data_type: NUMBER
+
       - name: primary_flag
-        description: "Primary relationship flag"
-        data_type: BOOLEAN
+        data_type: boolean
+        description: "Whether this is the primary firm relationship"
+
       - name: producer_npn
-        description: "Producer NPN"
-        data_type: TEXT
+        data_type: text
+        description: "National Producer Number"
+
       - name: first_name
-        description: "First name"
-        data_type: TEXT
+        data_type: text
+        description: "Producer first name"
+
       - name: last_name
-        description: "Last name"
-        data_type: TEXT
+        data_type: text
+        description: "Producer last name"
+
+      - name: full_name
+        data_type: text
+        description: "Full name of the producer (first_name + last_name)"
+
       - name: producer_type
-        description: "Producer type"
-        data_type: TEXT
+        data_type: text
+        description: "Type of producer"
+
       - name: license_state
-        description: "License state"
-        data_type: TEXT
+        data_type: text
+        description: "State where the producer is licensed"
+
       - name: license_status
-        description: "License status"
-        data_type: TEXT
+        data_type: text
+        description: "Current license status"
+
       - name: license_number
+        data_type: text
         description: "License number"
-        data_type: TEXT
+
       - name: email
-        description: "Email"
-        data_type: TEXT
+        data_type: text
+        description: "Producer email address"
+
       - name: phone
-        description: "Phone"
-        data_type: TEXT
+        data_type: text
+        description: "Producer phone number"
+
       - name: designation
+        data_type: text
         description: "Professional designation"
-        data_type: TEXT
+
       - name: years_experience
+        data_type: number
         description: "Years of experience"
-        data_type: NUMBER
+
       - name: active_flag
-        description: "Active flag"
-        data_type: BOOLEAN
+        data_type: boolean
+        description: "Whether the producer is currently active"
+
       - name: created_at
-        description: "Created timestamp"
-        data_type: TIMESTAMP_NTZ
+        data_type: timestamp_ntz
+        description: "Record creation timestamp"
+
       - name: updated_at
-        description: "Updated timestamp"
-        data_type: TIMESTAMP_NTZ
+        data_type: timestamp_ntz
+        description: "Record last updated timestamp"

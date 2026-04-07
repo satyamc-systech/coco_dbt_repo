@@ -14,14 +14,14 @@ models:
 
       - name: claim_number
         data_type: text
-        description: "Claim number assigned to the claim"
+        description: "Claim reference number"
         data_tests:
           - not_null
           - unique
 
       - name: policy_id
         data_type: number
-        description: "Foreign key referencing the associated policy"
+        description: "Foreign key referencing the policy"
         data_tests:
           - not_null
 
@@ -31,11 +31,11 @@ models:
 
       - name: claim_type
         data_type: text
-        description: "Type of the claim"
+        description: "Type of claim filed"
 
       - name: incident_date
         data_type: date
-        description: "Date the incident occurred"
+        description: "Date of the incident"
 
       - name: report_date
         data_type: date
@@ -43,11 +43,11 @@ models:
 
       - name: claim_amount
         data_type: number
-        description: "Total amount of the claim"
+        description: "Total claimed amount"
 
       - name: approved_amount
         data_type: number
-        description: "Amount approved for the claim"
+        description: "Approved payout amount"
 
       - name: deductible_applied
         data_type: number

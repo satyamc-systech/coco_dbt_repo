@@ -9,36 +9,47 @@ with branch_with_firm as (
 
 ),
 
+branch_counts as (
+
+    select
+        master_firm_id,
+        count(*) as branch_count
+    from branch_with_firm
+    group by master_firm_id
+
+),
+
+stg_firm as (
+
+    select * from {{ ref('stg__producers__firm') }}
+
+),
+
 final__firm as (
 
     select
-        {{ dbt_utils.generate_surrogate_key(['firm_dim_key']) }} as firm_sk,
-        firm_dim_key,
-        master_firm_id,
-        firm_name,
-        firm_type,
-        firm_status,
-        firm_npn,
-        firm_hq_state,
-        firm_hq_city,
-        firm_effective_date,
-        firm_expiration_date,
-        count(distinct branch_id) as total_branch_count,
-        count(distinct case when branch_status = 'ACTIVE' then branch_id end) as active_branch_count,
-        current_timestamp() as dbt_created_at,
-        current_timestamp() as dbt_updated_at
-    from branch_with_firm
-    group by
-        firm_dim_key,
-        master_firm_id,
-        firm_name,
-        firm_type,
-        firm_status,
-        firm_npn,
-        firm_hq_state,
-        firm_hq_city,
-        firm_effective_date,
-        firm_expiration_date
+        {{ dbt_utils.generate_surrogate_key(['f.firm_dim_key']) }} as firm_sk,
+        f.firm_dim_key,
+        f.master_firm_id,
+        f.firm_name,
+        f.firm_type,
+        f.firm_status,
+        f.firm_npn,
+        f.firm_tax_id,
+        f.firm_state,
+        f.firm_city,
+        f.firm_zip,
+        f.effective_date,
+        f.expiration_date,
+        coalesce(bc.branch_count, 0) as branch_count,
+        f.created_at,
+        f.updated_at
+    from stg_firm f
+    left join branch_counts bc
+        on f.master_firm_id = bc.master_firm_id
+    {% if is_incremental() %}
+    where f.updated_at > (select max(updated_at) from {{ this }})
+    {% endif %}
 
 )
 

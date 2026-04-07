@@ -20,6 +20,8 @@ models:
       +materialized: view
     int:
       +materialized: ephemeral
+      producers:
+        +materialized: table
     marts:
       +materialized: incremental
     publish:

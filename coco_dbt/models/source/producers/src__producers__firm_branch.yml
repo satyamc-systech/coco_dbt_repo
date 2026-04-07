@@ -13,37 +13,37 @@ sources:
             description: "Unique identifier for the branch"
           - name: MASTER_FIRM_ID
             data_type: TEXT
-            description: "Foreign key to the parent firm"
+            description: "Foreign key to the master firm"
           - name: BRANCH_NAME
             data_type: TEXT
-            description: "Name of the branch office"
+            description: "Name of the branch"
           - name: BRANCH_TYPE
             data_type: TEXT
-            description: "Type of branch (MAIN, SATELLITE)"
+            description: "Type of branch"
           - name: BRANCH_STATUS
             data_type: TEXT
-            description: "Current status of the branch"
+            description: "Current branch status"
           - name: BRANCH_ADDRESS
             data_type: TEXT
-            description: "Street address of the branch"
+            description: "Branch street address"
           - name: BRANCH_CITY
             data_type: TEXT
-            description: "City of the branch"
+            description: "Branch city"
           - name: BRANCH_STATE
             data_type: TEXT
-            description: "State of the branch"
+            description: "Branch state"
           - name: BRANCH_ZIP
             data_type: TEXT
-            description: "ZIP code of the branch"
+            description: "Branch zip code"
           - name: BRANCH_PHONE
             data_type: TEXT
-            description: "Phone number of the branch"
+            description: "Branch phone number"
           - name: BRANCH_MANAGER
             data_type: TEXT
             description: "Name of the branch manager"
           - name: EFFECTIVE_DATE
             data_type: DATE
-            description: "Date the branch became effective"
+            description: "Branch effective date"
           - name: CREATED_AT
             data_type: TIMESTAMP_NTZ
             description: "Record creation timestamp"

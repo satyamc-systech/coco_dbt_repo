@@ -10,40 +10,40 @@ sources:
         columns:
           - name: FIRM_DIM_KEY
             data_type: NUMBER
-            description: "Surrogate key for the firm dimension"
+            description: "Unique dimension key for the firm"
           - name: MASTER_FIRM_ID
             data_type: TEXT
-            description: "Business key uniquely identifying the master firm"
+            description: "Master firm identifier"
           - name: FIRM_NAME
             data_type: TEXT
-            description: "Legal name of the firm"
+            description: "Name of the firm"
           - name: FIRM_TYPE
             data_type: TEXT
-            description: "Type of firm (BROKER_DEALER, RIA, INSURANCE_AGENCY)"
+            description: "Type of firm"
           - name: FIRM_STATUS
             data_type: TEXT
-            description: "Current status of the firm (ACTIVE, INACTIVE, SUSPENDED)"
+            description: "Current firm status"
           - name: FIRM_NPN
             data_type: TEXT
-            description: "National Producer Number for the firm"
+            description: "Firm National Producer Number"
           - name: FIRM_TAX_ID
             data_type: TEXT
-            description: "Federal tax identification number"
+            description: "Firm tax identification number"
           - name: FIRM_STATE
             data_type: TEXT
-            description: "State where the firm is headquartered"
+            description: "State where the firm is located"
           - name: FIRM_CITY
             data_type: TEXT
-            description: "City where the firm is headquartered"
+            description: "City where the firm is located"
           - name: FIRM_ZIP
             data_type: TEXT
-            description: "ZIP code of firm headquarters"
+            description: "Firm zip code"
           - name: EFFECTIVE_DATE
             data_type: DATE
-            description: "Date the firm became effective"
+            description: "Firm effective date"
           - name: EXPIRATION_DATE
             data_type: DATE
-            description: "Date the firm registration expires"
+            description: "Firm expiration date"
           - name: CREATED_AT
             data_type: TIMESTAMP_NTZ
             description: "Record creation timestamp"

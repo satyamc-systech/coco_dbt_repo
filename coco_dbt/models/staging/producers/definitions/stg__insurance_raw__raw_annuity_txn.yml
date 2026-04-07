@@ -1,8 +1,8 @@
 version: 2
 
 models:
-  - name: int__txn_with_branch
-    description: "Intermediate model joining RAW_ANNUITY_TXN with FIRM_BRANCH on PHYSICAL_BRANCH_ID=BRANCH_ID to enrich transactions with branch details"
+  - name: stg__insurance_raw__raw_annuity_txn
+    description: "Staging model for the RAW_ANNUITY_TXN table from INSURANCE_RAW schema"
 
     columns:
       - name: txn_id
@@ -66,7 +66,7 @@ models:
 
       - name: annuitant_age
         data_type: number
-        description: "Age of the annuitant"
+        description: "Age of the annuitant at time of transaction"
 
       - name: surrender_period_yrs
         data_type: number
@@ -75,30 +75,6 @@ models:
       - name: interest_rate
         data_type: number
         description: "Guaranteed interest rate"
-
-      - name: branch_name
-        data_type: text
-        description: "Name of the branch"
-
-      - name: branch_type
-        data_type: text
-        description: "Type of branch"
-
-      - name: branch_status
-        data_type: text
-        description: "Current branch status"
-
-      - name: branch_city
-        data_type: text
-        description: "Branch city"
-
-      - name: branch_state
-        data_type: text
-        description: "Branch state"
-
-      - name: branch_manager
-        data_type: text
-        description: "Name of the branch manager"
 
       - name: created_at
         data_type: timestamp_ntz

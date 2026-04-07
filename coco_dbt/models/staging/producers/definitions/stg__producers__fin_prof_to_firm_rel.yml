@@ -1,0 +1,57 @@
+version: 2
+
+models:
+  - name: stg__producers__fin_prof_to_firm_rel
+    description: "Staging model for the FIN_PROF_TO_FIRM_REL table from PRODUCERS schema"
+
+    columns:
+      - name: relationship_id
+        data_type: number
+        description: "Unique identifier for the producer-firm relationship"
+        data_tests:
+          - not_null
+          - unique
+
+      - name: fin_prof_dim_key
+        data_type: number
+        description: "Foreign key to FIN_PROF dimension"
+        data_tests:
+          - not_null
+
+      - name: firm_dim_key
+        data_type: number
+        description: "Foreign key to FIRM dimension"
+        data_tests:
+          - not_null
+
+      - name: relationship_type
+        data_type: text
+        description: "Type of relationship between producer and firm"
+
+      - name: relationship_status
+        data_type: text
+        description: "Current status of the relationship"
+
+      - name: start_date
+        data_type: date
+        description: "Relationship start date"
+
+      - name: end_date
+        data_type: date
+        description: "Relationship end date"
+
+      - name: commission_split_pct
+        data_type: number
+        description: "Commission split percentage"
+
+      - name: primary_flag
+        data_type: boolean
+        description: "Whether this is the primary firm relationship"
+
+      - name: created_at
+        data_type: timestamp_ntz
+        description: "Record creation timestamp"
+
+      - name: updated_at
+        data_type: timestamp_ntz
+        description: "Record last updated timestamp"

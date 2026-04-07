@@ -3,7 +3,7 @@
     unique_key='producer_sk'
 ) }}
 
-with producer_with_profile as (
+with producer_profile as (
 
     select * from {{ ref('int__producer_with_profile') }}
 
@@ -12,31 +12,34 @@ with producer_with_profile as (
 final__producer as (
 
     select
-        {{ dbt_utils.generate_surrogate_key(['fin_prof_dim_key']) }} as producer_sk,
-        fin_prof_dim_key,
-        producer_npn,
-        first_name,
-        last_name,
-        first_name || ' ' || last_name as full_name,
-        producer_type,
-        license_state,
-        license_status,
-        license_number,
-        email,
-        phone,
-        designation,
-        years_experience,
-        active_flag,
-        firm_dim_key,
-        relationship_type,
-        relationship_status,
-        relationship_start_date,
-        relationship_end_date,
-        commission_split_pct,
-        primary_flag,
-        current_timestamp() as dbt_created_at,
-        current_timestamp() as dbt_updated_at
-    from producer_with_profile
+        {{ dbt_utils.generate_surrogate_key(['pp.fin_prof_dim_key']) }} as producer_sk,
+        pp.fin_prof_dim_key,
+        pp.producer_npn,
+        pp.first_name,
+        pp.last_name,
+        pp.full_name,
+        pp.producer_type,
+        pp.license_state,
+        pp.license_status,
+        pp.license_number,
+        pp.email,
+        pp.phone,
+        pp.designation,
+        pp.years_experience,
+        pp.active_flag,
+        pp.firm_dim_key,
+        pp.relationship_type,
+        pp.relationship_status,
+        pp.start_date as relationship_start_date,
+        pp.end_date as relationship_end_date,
+        pp.commission_split_pct,
+        pp.primary_flag,
+        pp.created_at,
+        pp.updated_at
+    from producer_profile pp
+    {% if is_incremental() %}
+    where pp.updated_at > (select max(updated_at) from {{ this }})
+    {% endif %}
 
 )
 

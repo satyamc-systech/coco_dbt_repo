@@ -22,6 +22,8 @@ Dimensions:
 
 ### Fact Table: fct__claims_summary
 
+@(skill:dbt-router) Create fct__claims_summary
+
 Grain: One row per claim
 
 Measures:

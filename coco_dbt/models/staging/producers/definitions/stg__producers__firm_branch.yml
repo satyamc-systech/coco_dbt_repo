@@ -1,8 +1,8 @@
 version: 2
 
 models:
-  - name: int__branch_with_firm
-    description: "Intermediate model joining FIRM_BRANCH with FIRM on MASTER_FIRM_ID to enrich branch data with firm details"
+  - name: stg__producers__firm_branch
+    description: "Staging model for the FIRM_BRANCH table from PRODUCERS schema"
 
     columns:
       - name: branch_id
@@ -14,7 +14,7 @@ models:
 
       - name: master_firm_id
         data_type: text
-        description: "Master firm identifier"
+        description: "Foreign key to the master firm"
         data_tests:
           - not_null
 
@@ -54,33 +54,9 @@ models:
         data_type: text
         description: "Name of the branch manager"
 
-      - name: branch_effective_date
+      - name: effective_date
         data_type: date
         description: "Branch effective date"
-
-      - name: firm_dim_key
-        data_type: number
-        description: "Firm dimension key"
-
-      - name: firm_name
-        data_type: text
-        description: "Name of the firm"
-
-      - name: firm_type
-        data_type: text
-        description: "Type of firm"
-
-      - name: firm_status
-        data_type: text
-        description: "Current firm status"
-
-      - name: firm_state
-        data_type: text
-        description: "State where the firm is located"
-
-      - name: firm_city
-        data_type: text
-        description: "City where the firm is located"
 
       - name: created_at
         data_type: timestamp_ntz

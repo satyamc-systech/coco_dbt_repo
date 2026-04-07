@@ -2,92 +2,167 @@ version: 2
 
 models:
   - name: fct__annuity_policy_txn
-    description: "Fact table for annuity policy transactions enriched with branch, firm, and producer data"
+    description: "Fact table for annuity policy transactions joined with branch and firm-producer relationship data, deduplicated by TXN_ID using ROW_NUMBER ordered by relationship_start_date DESC, with commission_rate_pct calculation"
+
     columns:
       - name: txn_sk
-        description: "Surrogate key for the transaction"
-        data_type: TEXT
+        data_type: text
+        description: "Surrogate key generated from txn_id"
         data_tests:
-          - unique
           - not_null
+          - unique
+
       - name: txn_id
-        description: "Source transaction ID"
-        data_type: TEXT
+        data_type: text
+        description: "Unique identifier for the annuity transaction"
+        data_tests:
+          - not_null
+          - unique
+
       - name: policy_number
-        description: "Policy number"
-        data_type: TEXT
+        data_type: text
+        description: "Policy number associated with the transaction"
+
       - name: product_type
-        description: "Annuity product type"
-        data_type: TEXT
+        data_type: text
+        description: "Type of annuity product"
+
       - name: txn_type
+        data_type: text
         description: "Transaction type"
-        data_type: TEXT
+
       - name: txn_status
-        description: "Transaction status"
-        data_type: TEXT
+        data_type: text
+        description: "Status of the transaction"
+
       - name: txn_date
-        description: "Transaction date"
-        data_type: DATE
+        data_type: date
+        description: "Date the transaction was initiated"
+
       - name: effective_date
-        description: "Effective date"
-        data_type: DATE
+        data_type: date
+        description: "Effective date of the transaction"
+
       - name: premium_amount
-        description: "Premium amount"
-        data_type: NUMBER
+        data_type: number
+        description: "Premium amount of the transaction"
+
       - name: commission_amount
-        description: "Commission amount"
-        data_type: NUMBER
+        data_type: number
+        description: "Commission amount earned"
+
       - name: commission_rate_pct
-        description: "Calculated commission rate percentage"
-        data_type: NUMBER
+        data_type: number
+        description: "Calculated commission rate as percentage of premium"
+
       - name: physical_branch_id
-        description: "Physical branch ID"
-        data_type: TEXT
+        data_type: text
+        description: "Physical branch where the transaction originated"
+
       - name: master_firm_id
-        description: "Master firm ID"
-        data_type: TEXT
+        data_type: text
+        description: "Master firm associated with the transaction"
+
       - name: owner_first_name
-        description: "Owner first name"
-        data_type: TEXT
+        data_type: text
+        description: "First name of the annuity owner"
+
       - name: owner_last_name
-        description: "Owner last name"
-        data_type: TEXT
+        data_type: text
+        description: "Last name of the annuity owner"
+
       - name: owner_state
-        description: "Owner state"
-        data_type: TEXT
+        data_type: text
+        description: "State of the annuity owner"
+
       - name: annuitant_age
-        description: "Annuitant age"
-        data_type: NUMBER
+        data_type: number
+        description: "Age of the annuitant"
+
       - name: surrender_period_yrs
-        description: "Surrender period years"
-        data_type: NUMBER
+        data_type: number
+        description: "Surrender period in years"
+
       - name: interest_rate
-        description: "Interest rate"
-        data_type: NUMBER
+        data_type: number
+        description: "Guaranteed interest rate"
+
       - name: branch_name
-        description: "Branch name"
-        data_type: TEXT
+        data_type: text
+        description: "Name of the branch"
+
       - name: branch_type
-        description: "Branch type"
-        data_type: TEXT
+        data_type: text
+        description: "Type of branch"
+
+      - name: branch_status
+        data_type: text
+        description: "Current branch status"
+
+      - name: branch_city
+        data_type: text
+        description: "Branch city"
+
       - name: branch_state
+        data_type: text
         description: "Branch state"
-        data_type: TEXT
+
+      - name: branch_manager
+        data_type: text
+        description: "Name of the branch manager"
+
       - name: firm_dim_key
+        data_type: number
         description: "Firm dimension key"
-        data_type: NUMBER
+
       - name: firm_name
-        description: "Firm name"
-        data_type: TEXT
+        data_type: text
+        description: "Name of the firm"
+
       - name: firm_type
-        description: "Firm type"
-        data_type: TEXT
+        data_type: text
+        description: "Type of firm"
+
       - name: firm_status
-        description: "Firm status"
-        data_type: TEXT
-      - name: dbt_created_at
-        description: "dbt record creation timestamp"
-        data_type: TIMESTAMP_NTZ
-      - name: dbt_updated_at
-        description: "dbt record update timestamp"
-        data_type: TIMESTAMP_NTZ
+        data_type: text
+        description: "Current firm status"
+
+      - name: relationship_id
+        data_type: number
+        description: "Relationship identifier"
+
+      - name: fin_prof_dim_key
+        data_type: number
+        description: "Foreign key to FIN_PROF dimension"
+
+      - name: relationship_type
+        data_type: text
+        description: "Type of relationship"
+
+      - name: relationship_status
+        data_type: text
+        description: "Current status of the relationship"
+
+      - name: relationship_start_date
+        data_type: date
+        description: "Relationship start date"
+
+      - name: relationship_end_date
+        data_type: date
+        description: "Relationship end date"
+
+      - name: commission_split_pct
+        data_type: number
+        description: "Commission split percentage"
+
+      - name: primary_flag
+        data_type: boolean
+        description: "Whether this is the primary firm relationship"
+
+      - name: created_at
+        data_type: timestamp_ntz
+        description: "Record creation timestamp"
+
+      - name: updated_at
+        data_type: timestamp_ntz
+        description: "Record last updated timestamp"

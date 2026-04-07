@@ -1,17 +1,10 @@
 version: 2
 
 models:
-  - name: dim__firm
-    description: "Firm dimension table with branch counts, using surrogate key on FIRM_DIM_KEY"
+  - name: stg__producers__firm
+    description: "Staging model for the FIRM table from PRODUCERS schema"
 
     columns:
-      - name: firm_sk
-        data_type: text
-        description: "Surrogate key generated from firm_dim_key"
-        data_tests:
-          - not_null
-          - unique
-
       - name: firm_dim_key
         data_type: number
         description: "Unique dimension key for the firm"
@@ -24,6 +17,7 @@ models:
         description: "Master firm identifier"
         data_tests:
           - not_null
+          - unique
 
       - name: firm_name
         data_type: text
@@ -64,10 +58,6 @@ models:
       - name: expiration_date
         data_type: date
         description: "Firm expiration date"
-
-      - name: branch_count
-        data_type: number
-        description: "Number of branches associated with the firm"
 
       - name: created_at
         data_type: timestamp_ntz

@@ -10,28 +10,28 @@ sources:
         columns:
           - name: RELATIONSHIP_ID
             data_type: NUMBER
-            description: "Unique identifier for the relationship record"
+            description: "Unique identifier for the producer-firm relationship"
           - name: FIN_PROF_DIM_KEY
             data_type: NUMBER
-            description: "Foreign key to the financial professional"
+            description: "Foreign key to FIN_PROF dimension"
           - name: FIRM_DIM_KEY
             data_type: NUMBER
-            description: "Foreign key to the firm"
+            description: "Foreign key to FIRM dimension"
           - name: RELATIONSHIP_TYPE
             data_type: TEXT
-            description: "Type of relationship (REGISTERED_REP, IAR, APPOINTED_AGENT)"
+            description: "Type of relationship between producer and firm"
           - name: RELATIONSHIP_STATUS
             data_type: TEXT
-            description: "Status of the relationship"
+            description: "Current status of the relationship"
           - name: START_DATE
             data_type: DATE
-            description: "Start date of the relationship"
+            description: "Relationship start date"
           - name: END_DATE
             data_type: DATE
-            description: "End date of the relationship"
+            description: "Relationship end date"
           - name: COMMISSION_SPLIT_PCT
             data_type: NUMBER
-            description: "Commission split percentage for the producer"
+            description: "Commission split percentage"
           - name: PRIMARY_FLAG
             data_type: BOOLEAN
             description: "Whether this is the primary firm relationship"

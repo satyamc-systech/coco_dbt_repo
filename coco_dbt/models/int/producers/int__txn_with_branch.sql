@@ -2,7 +2,7 @@
     materialized='table'
 ) }}
 
-with stg_raw_annuity_txn as (
+with stg_txn as (
 
     select * from {{ ref('stg__insurance_raw__raw_annuity_txn') }}
 
@@ -34,18 +34,17 @@ final__txn_with_branch as (
         t.annuitant_age,
         t.surrender_period_yrs,
         t.interest_rate,
-        b.branch_name,
-        b.branch_type,
-        b.branch_status,
-        b.branch_city,
-        b.branch_state,
-        b.branch_zip,
-        b.branch_manager,
+        fb.branch_name,
+        fb.branch_type,
+        fb.branch_status,
+        fb.branch_city,
+        fb.branch_state,
+        fb.branch_manager,
         t.created_at,
         t.updated_at
-    from stg_raw_annuity_txn t
-    inner join stg_firm_branch b
-        on t.physical_branch_id = b.branch_id
+    from stg_txn t
+    inner join stg_firm_branch fb
+        on t.physical_branch_id = fb.branch_id
 
 )
 
