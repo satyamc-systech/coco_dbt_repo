@@ -71,6 +71,23 @@ tasks/create_publish_model.md
 
 ---
 
+### Create Snapshot
+
+If the user asks to:
+- create a snapshot
+- track history of a table
+- capture slowly changing dimensions (SCD Type 2)
+- track changes over time
+
+1. Check if source model exists.
+2. If source does not exist:
+   - generate the source model first.
+
+Load:
+tasks/create_snapshot.md
+
+---
+
 ### Generate Full Pipeline
 
 Load:
